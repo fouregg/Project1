@@ -1,0 +1,22 @@
+.card-body {
+  padding-bottom: 0.5rem;
+}
+p {
+  margin-bottom: 0px;
+}
+.title_alt {
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.list-group-flush {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 200px;
+}
+.card {
+  padding: 0;
+}
+.card-img-top {
+  height: 25rem;
+}
