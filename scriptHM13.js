@@ -13,7 +13,7 @@ function artResponse() {
       console.log(artworkId);
       console.log(linkImg);
       console.log(cardTitleText);
-      // получение данных по каждой картинке
+      // получение данных по каждой картинке, второй запрос
       let imgLinkResult;
       $.getJSON(linkImg, (responce) => {
         console.log(responce);
