@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <canvas id="canvas" width="200" height="200"> </canvas>
+    <script>
+      let canvas = document.getElementById("canvas").getContext("2d");
+      function drawClock() {
+        let time = new Date();
+        let hours = time.getHours();
+        let minutes = time.getMinutes();
+        let seconds = time.getSeconds();
+        // Нормализация времени, если больше 12
+        hours = hours >= 12 ? hours - 12 : hours;
+
+        canvas.save();
+        // Очищаем полотно от того, что было раньше
+        canvas.clearRect(0, 0, 200, 200);
+        // Переместим курсор отрисовки к центру
+        canvas.translate(100, 100);
+        // Уменьшим масштаб отрисовки
+        canvas.scale(0.5, 0.5);
+        // Прокрутим курсор отрисовки на 90 влево
+        canvas.rotate(-Math.PI / 2);
+        // Определяем границу отрисованных элементов
+        canvas.strokeStyle = "black";
+        // Определяем заливки отрисованных элементов
+        canvas.fill = "white";
+        // Определяем ширину линий
+        canvas.lineWidth = 10;
+
+        function aroundClock() {
+          // рисуем круг циферблата
+          canvas.save();
+          canvas.beginPath();
+          canvas.strokeStyle = "#1122FA";
+          canvas.arc(0, 0, 140, 0, Math.PI * 2, true); // окружность
+          canvas.stroke();
+          canvas.restore();
+        }
+
+        function drawHours() {
+          // рисуем деление часов
+          canvas.save();
+          for (let i = 1; i <= 12; i++) {
+            //Начинаем отрисовку фигуры(Используется для фигур с линиями)
+            canvas.beginPath();
+            canvas.rotate(Math.PI / 6); // Крутим на следующую риску
+            canvas.moveTo(100, 0);
+            canvas.lineTo(120, 0);
+            canvas.stroke(); // Рисуем заданную фигуру
+          }
+          canvas.restore(); // Востанавливаем значения заданные ранее из стека канваса
+        }
+
+        function drawMinutes() {
+          // Рисуем деления минут
+          canvas.save();
+          canvas.lineWidth = 4;
+          for (let i = 0; i < 60; i++) {
+            if (i % 5 != 0) {
+              canvas.beginPath();
+              canvas.moveTo(110, 0);
+              canvas.lineTo(120, 0);
+              canvas.stroke();
+            }
+            canvas.rotate(Math.PI / 30); // поворот Канваса на 1/60 от круга
+          }
+          canvas.restore();
+        }
+
+        function drawArrowSeconds() {
+          // Рисуем секундную стрелку
+          canvas.save();
+          canvas.lineWidth = 1;
+          canvas.strokeStyle = "#DD0000";
+          canvas.fillStyle = "#DD0000";
+          canvas.rotate((seconds * Math.PI) / 30); // Поворачивает стрелку
+          canvas.beginPath();
+          canvas.moveTo(-30, 0);
+          canvas.lineTo(100, 0);
+          canvas.stroke();
+          canvas.restore();
+        }
+        // Добавляем новую функцию, аналогичную секудной стрелке
+        function drawArrowMinutes() {
+          canvas.save();
+          canvas.lineWidth = 6;
+          canvas.strokeStyle = "black";
+          canvas.rotate((minutes * Math.PI) / 30);
+          canvas.beginPath();
+          canvas.moveTo(-20, 0);
+          canvas.lineTo(80, 0);
+          canvas.stroke();
+          canvas.restore();
+        }
+        // Добавляем новую функцию, аналогичную минутной стрелке
+        function drawArrowHours() {
+          canvas.save();
+          canvas.lineWidth = 10;
+          canvas.strokeStyle = "black";
+          canvas.rotate((hours * Math.PI) / 6 + (minutes * Math.PI) / (6 * 60));
+          canvas.beginPath();
+          canvas.moveTo(-15, 0);
+          canvas.lineTo(60, 0);
+          canvas.stroke();
+          canvas.restore();
+        }
+
+        aroundClock();
+        drawHours();
+        drawMinutes();
+        drawArrowSeconds();
+        drawArrowMinutes(); // Добавляем стрелку минут
+        drawArrowHours(); // Добавляем стрелку часов
+        canvas.restore();
+
+        requestAnimationFrame(drawClock);
+      }
+      requestAnimationFrame(drawClock);
+    </script>
+  </body>
+</html>
