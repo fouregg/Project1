@@ -52,6 +52,11 @@ function artResponse() {
         let artistInfo = document.createElement("h6");
         artistInfo.innerHTML = imgResponse.data.artist_display;
         cardBody.appendChild(artistInfo);
+        // Добавляем кнопку
+        let buttonElement = document.createElement("button");
+        $(buttonElement).addClass("btn btn-primary");
+        buttonElement.innerText = "Description";
+        cardBody.appendChild(buttonElement);
       });
     }
   });
