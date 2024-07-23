@@ -45,12 +45,12 @@ function artResponse() {
         cardBody.appendChild(cardTitle);
         cardTitle.innerHTML = data.data[j].title;
         // Добавляем информацию о годе написания картины
-        let artistInfo = document.createElement("h6");
-        artistInfo.innerHTML = imgResponse.data.date_end;
-        cardBody.appendChild(artistInfo);
+        let dateEndInfo = document.createElement("h6");
+        dateEndInfo.innerHTML = imgResponse.data.date_end;
+        cardBody.appendChild(dateEndInfo);
         // Добавляем информацию об авторе
-        let artistInfo = document.createElement("p");
-        artistInfo.innerHTML = imgResponse.data.date_end;
+        let artistInfo = document.createElement("h6");
+        artistInfo.innerHTML = imgResponse.data.artist_display;
         cardBody.appendChild(artistInfo);
       });
     }
