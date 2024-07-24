@@ -1,8 +1,17 @@
-body {
+.body {
   background-color: antiquewhite;
 }
-container {
+.container {
   text-align: center;
+}
+form-control {
+  font-size: 1;
+}
+.sticky-header {
+  position: sticky;
+  top: 0;
+  background-color: white;
+  z-index: 1000;
 }
 .card-body {
   padding-bottom: 0.5rem;

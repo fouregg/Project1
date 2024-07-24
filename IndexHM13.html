@@ -35,8 +35,28 @@
   </head>
   <body>
     <div class="container">
-    <h1> Произведения с кошками из Chicago Art Gallery</h1>
+      <div class="row sticky-header">
+        <h5> Произведения с кошками из Chicago Art Gallery</h5>
+        <div class="row mt-3">
+          <div class="col-md-6 offset-md-3">
+            <input type="text" id="searchInput" class="form-control" placeholder="Search...">
+            <button id="searchButton" class="btn btn-primary mt-2">Search</button>
+          </div>
+        </div>
+      </div>
     <script>
+      document.getElementById('searchButton').addEventListener('click', function() {
+          const searchValue = document.getElementById('searchInput').value.toLowerCase();
+          const cards = document.querySelectorAll('.card');
+          cards.forEach(card => {
+            const title = card.querySelector('.card-title').innerText.toLowerCase();
+            if (title.includes(searchValue)) {
+              card.style.display = '';
+            } else {
+              card.style.display = 'none';
+            }
+          });
+        });
       artResponse();
     </script>
   </body>
