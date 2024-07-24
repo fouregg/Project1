@@ -36,25 +36,46 @@
   <body>
     <div class="container">
       <div class="row sticky-header">
-        <h5> Произведения с кошками из Chicago Art Gallery</h5>
-        <div class="row mt-3">
-          <div class="col-md-6 offset-md-3">
-            <input type="text" id="searchInput" class="form-control" placeholder="Search...">
-            <button id="searchButton" class="btn btn-primary mt-2">Search</button>
-          </div>
+        <h3>Произведения с кошками из Chicago Art Gallery</h3>
+        <div class="col-md-12 d-flex align-items-center">
+          <input
+            type="text"
+            id="searchInput"
+            class="form-control me-2"
+            placeholder="Search..."
+          />
+          <button id="searchButton" class="btn btn-primary mt-2 me-2">
+            Search
+          </button>
+          <button id="resetButton" class="btn btn-secondary mt-2">Reset</button>
         </div>
       </div>
+    </div>
     <script>
-      document.getElementById('searchButton').addEventListener('click', function() {
-          const searchValue = document.getElementById('searchInput').value.toLowerCase();
-          const cards = document.querySelectorAll('.card');
-          cards.forEach(card => {
-            const title = card.querySelector('.card-title').innerText.toLowerCase();
+      document
+        .getElementById("searchButton")
+        .addEventListener("click", function () {
+          const searchValue = document
+            .getElementById("searchInput")
+            .value.toLowerCase();
+          const cards = document.querySelectorAll(".card");
+          cards.forEach((card) => {
+            const title = card
+              .querySelector(".card-title")
+              .innerText.toLowerCase();
             if (title.includes(searchValue)) {
-              card.style.display = '';
+              card.style.display = "";
             } else {
-              card.style.display = 'none';
+              card.style.display = "none";
             }
+          });
+        });
+      document
+        .getElementById("resetButton")
+        .addEventListener("click", function () {
+          const cards = document.querySelectorAll(".card");
+          cards.forEach((card) => {
+            card.style.display = "";
           });
         });
       artResponse();

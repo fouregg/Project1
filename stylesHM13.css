@@ -1,17 +1,30 @@
-.body {
-  background-color: antiquewhite;
+body {
+  background-color: rgb(168, 129, 131);
 }
 .container {
   text-align: center;
+  position: relative;
 }
-form-control {
+.form-control {
   font-size: 1;
+  height: 30px;
+}
+.btn {
+  height: 30px;
 }
 .sticky-header {
   position: sticky;
+  height: 40px;
   top: 0;
-  background-color: white;
+  background-color: rgb(168, 129, 131);
   z-index: 1000;
+}
+.sticky-header h5 {
+  text-align: center;
+  margin-top: 10px;
+}
+.row.mt-3 {
+  margin-top: 10px;
 }
 .card-body {
   padding-bottom: 0.5rem;
@@ -35,6 +48,3 @@ h1 {
 .card {
   padding: 0;
 }
-/* .card-img-top {
-  height: 25rem;
-} */
