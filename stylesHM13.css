@@ -1,8 +1,17 @@
+body {
+  background-color: antiquewhite;
+}
+container {
+  text-align: center;
+}
 .card-body {
   padding-bottom: 0.5rem;
 }
 p {
   margin-bottom: 0px;
+}
+h1 {
+  text-align: center;
 }
 .title_alt {
   padding-left: 1.25rem;

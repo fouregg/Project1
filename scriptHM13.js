@@ -50,13 +50,32 @@ function artResponse() {
         cardBody.appendChild(dateEndInfo);
         // Добавляем информацию об авторе
         let artistInfo = document.createElement("h6");
-        artistInfo.innerHTML = imgResponse.data.artist_display;
+        artistInfo.innerText = imgResponse.data.artist_display;
         cardBody.appendChild(artistInfo);
         // Добавляем кнопку
         let buttonElement = document.createElement("button");
         $(buttonElement).addClass("btn btn-primary");
-        buttonElement.innerText = "Description";
+        buttonElement.innerHTML = "Description";
         cardBody.appendChild(buttonElement);
+        // Обработчик событий для кнопки
+        buttonElement.addEventListener("click", () => {
+          let descriptionWindow = window.open("", "_blank", "width=100%");
+          descriptionWindow.document.write(`
+              <html>
+                <head><title>Отдельная страница с описанием</title></head>
+                <body>
+                  <h1>${data.data[j].title}</h1>
+                  <h2> Год написания: ${imgResponse.data.date_end}</h2>
+                  <h2> Художник: ${imgResponse.data.artist_display}</h2>
+                  <img src="${imgLinkResult}" style="width: 100%;">
+                  <p>${
+                    imgResponse.data.description || "No description available"
+                  }</p>
+
+                </body>
+              </html>
+            `);
+        });
       });
     }
   });
