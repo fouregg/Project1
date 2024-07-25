@@ -3,13 +3,15 @@ body {
 }
 .container {
   text-align: center;
-  position: relative;
 }
 .form-control {
   font-size: 1;
   height: 30px;
 }
 .btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
   height: 30px;
 }
 .sticky-header {
