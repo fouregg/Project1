@@ -1,0 +1,81 @@
+body {
+  background-color: rgb(168, 129, 131);
+}
+.container {
+  text-align: center;
+}
+.not_visible {
+  /* opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+*/
+  display: none;
+}
+/*.visible {
+  opacity: 1;
+  transform: scale(1);
+}*/
+/*.descriptionDiv {
+  opacity: 0;
+  transform: scale(0.5);
+  transition: opacity 0.5s ease-out, transform 0.5s ease-out;
+}*/
+/*.descriptionDiv.visible {
+  opacity: 1;
+  transform: scale(1);
+}*/
+.form-control {
+  font-size: 1;
+  height: 30px;
+}
+.btn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 30px;
+}
+.sticky-header {
+  padding-left: 200px;
+  padding-right: 200px;
+  position: sticky;
+  height: 40px;
+  top: 0;
+  background-color: rgb(168, 129, 131);
+  z-index: 1000;
+}
+.card-description {
+  font-size: 14px; /* Размер шрифта */
+  line-height: 1.5; /* Межстрочный интервал */
+  color: #333; /* Цвет текста */
+  margin-top: 10px; /* Отступ сверху */
+}
+.sticky-header h5 {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.row.mt-3 {
+  margin-top: 10px;
+}
+.card-body {
+  padding-bottom: 0.5rem;
+}
+p {
+  margin-bottom: 0px;
+}
+h1 {
+  text-align: center;
+}
+.title_alt {
+  padding-left: 1.25rem;
+  margin-bottom: 0.5rem;
+}
+.list-group-flush {
+  margin-bottom: 0.5rem;
+  text-align: center;
+  overflow-y: auto;
+  max-height: 200px;
+}
+.card {
+  padding: 0;
+}
