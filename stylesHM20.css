@@ -10,10 +10,6 @@ body {
   transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
   /*  display: none;*/
 }
-.fade-out {
-  opacity: 0;
-  transform: scale(0.5);
-}
 
 .form-control {
   font-size: 1;
