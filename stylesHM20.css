@@ -14,10 +14,6 @@ body {
   opacity: 0;
   transform: scale(0.5);
 }
-.descriptionDiv {
-  transition: opacity 0.5s ease-out,
-    transform cubic-bezier(0.175, 0.885, 0.32, 1.275) ease-out;
-}
 
 .form-control {
   font-size: 1;
