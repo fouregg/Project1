@@ -63,7 +63,13 @@ function artResponse() {
         buttonElement.addEventListener("click", () => {
           console.log("Кнопка была нажата!");
           const allCards = document.querySelectorAll(".card");
-          allCards.forEach((card) => card.classList.add("not_visible"));
+          allCards.forEach((card) => card.classList.add("zero_opacity"));
+
+          setTimeout(() => {
+            allCards.forEach((card) =>
+              card.parentElement.classList.add("display_none")
+            );
+          }, 300);
 
           // Создаем новый div для отображения информации
           let descriptionDiv = document.createElement("div");
@@ -87,7 +93,7 @@ function artResponse() {
   });
 }
 // прописывает функция ввода и поиска, которая ищет картинки по введённому наименованию
-
+/// стираются картинки, если у них нет в названии введённого наименования
 function search_fn() {
   console.log("Test");
   console.log(document.getElementById("searchInput").value);
@@ -96,22 +102,27 @@ function search_fn() {
   let massive = document.body.getElementsByClassName("card");
   for (let card of massive) {
     let fullName = card.querySelector(".card-title").innerText.toLowerCase();
-    if (!fullName.includes(string)) card.classList.add("not_visible");
+    if (!fullName.includes(string)) {
+      card.classList.add("zero_opacity");
+
+      setTimeout(() => {
+        card.parentElement.classList.add("display_none");
+      }, 300);
+    }
   }
 }
 // прописыываем функцию сброса, которая по кнопке reset возвращаем все карточки на место
 // осуществляется поиск карточек с крассом not_vivible и удаления этого свойства
 function reset_fn() {
-  const cards = document.querySelectorAll(".card.not_visible");
-  cards.forEach((card) => {
-    card.classList.remove("not_visible");
-    //card.classList.add("not_visible");
+  const cards = document.querySelectorAll(".card");
+  cards.forEach((card) => card.parentElement.classList.remove("display_none"));
+  setTimeout(() => {
+    cards.forEach((card) => {
+      card.classList.remove("zero_opacity");
+    });
   });
   // Добавляем класс not_visible к элементам с классом descriptionDiv
-  let descriptionDivs = document.querySelectorAll(".descriptionDiv");
-  console.log(`Found ${descriptionDivs.length} descriptionDiv elements`);
-  descriptionDivs.forEach((div) => {
-    console.log("Removing descriptionDiv:", div);
-    div.classList.add("not_visible"); // Добавляем класс для анимации
-  });
+  let descriptionDiv = document.querySelector(".descriptionDiv");
+  console.log(`Found ${descriptionDiv.length} descriptionDiv elements`);
+  descriptionDiv.classList.add("display_none"); // Добавляем класс для анимации
 }
