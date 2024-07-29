@@ -112,8 +112,6 @@ function reset_fn() {
   console.log(`Found ${descriptionDivs.length} descriptionDiv elements`);
   descriptionDivs.forEach((div) => {
     console.log("Removing descriptionDiv:", div);
-    //div.remove();
-    div.classList.add("not_visible");
-    //div.classList.add("not_visible");
+    div.classList.add("not_visible"); // Добавляем класс для анимации
   });
 }
