@@ -58,7 +58,7 @@ function artResponse() {
         buttonElement.innerHTML = "Description";
         cardBody.appendChild(buttonElement);
 
-        // Добавляем обработчки для кнопкипапапапааааааааааааааааааааааааа
+        // Добавляем обработчки для кнопки
 
         buttonElement.addEventListener("click", () => {
           console.log("Кнопка была нажата!");
@@ -73,9 +73,9 @@ function artResponse() {
 
           // Создаем новый div для отображения информации
           let descriptionDiv = document.createElement("div");
-          descriptionDiv.classList.add("descriptionDiv");
-          //descriptionDiv.classList.add("descriptionDiv", "visible");
           // Добавляем классы// Добавляем класс
+          descriptionDiv.classList.add("descriptionDiv");
+          // Добавляем информацию о произведении искусства
           descriptionDiv.innerHTML = `
             <img src="${imgLinkResult}" style="width: 100%;">
             <h1>${data.data[j].title}</h1>
@@ -111,11 +111,13 @@ function search_fn() {
     }
   }
 }
+
 // прописыываем функцию сброса, которая по кнопке reset возвращаем все карточки на место
 // осуществляется поиск карточек с крассом not_vivible и удаления этого свойства
 function reset_fn() {
   const cards = document.querySelectorAll(".card");
   cards.forEach((card) => card.parentElement.classList.remove("display_none"));
+
   setTimeout(() => {
     cards.forEach((card) => {
       card.classList.remove("zero_opacity");
