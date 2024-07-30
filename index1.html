@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+    <link href="styles1.css" />
+    <link rel="stylesheet" href="styles1.css" />
+    <title>Registration form</title>
+  </head>
+
+  <body>
+    <div class="container">
+      <h2>Форма отправки заявки на экскурсию</h2>
+
+      <form class="row g-3 form-bg" id="form" method="post" action="form1.php">
+        <div class="col-md-4">
+          <label for="validationDefault01" class="form-label">Имя</label>
+          <input
+            type="text"
+            class="form-control"
+            id="validationDefault01"
+            name="firstName"
+            value="Ivan"
+            required
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefault02" class="form-label">Фамилия</label>
+          <input
+            type="text"
+            class="form-control"
+            id="validationDefault02"
+            name="lastName"
+            value="Ivanov"
+            required
+          />
+        </div>
+        <div class="col-md-4">
+          <label for="validationDefaultUsername" class="form-label"
+            >Пользователь</label
+          >
+          <div class="input-group">
+            <span class="input-group-text" id="inputGroupPrepend2">@</span>
+            <input
+              type="text"
+              class="form-control"
+              id="validationDefaultUsername"
+              name="email"
+              aria-describedby="inputGroupPrepend2"
+              required
+            />
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label for="city" class="form-label">Город</label>
+          <input
+            type="text"
+            class="form-control"
+            id="city"
+            name="city"
+            required
+          />
+        </div>
+        <div class="col-md-3">
+          <label for="validationDefault04" class="form-label">Пол</label>
+          <select
+            class="form-select"
+            id="validationDefault04"
+            name="gender"
+            required
+          >
+            <option selected disabled value="">укажите</option>
+            <option value="f">Женский</option>
+            <option value="m">Мужской</option>
+          </select>
+        </div>
+        <div class="col-md-3">
+          <label for="password" class="form-label">Пароль</label>
+          <input
+            type="text"
+            class="form-control"
+            id="password"
+            name="password"
+            required
+          />
+        </div>
+        <div class="col-12">
+          <button class="btn btn-primary" type="submit">Отправить</button>
+        </div>
+      </form>
+      <script>
+        // Функция, для проверки валидности формы bootstrap
+        (function () {
+          "use strict";
+          // Получаем форму
+          let form = document.getElementById("form");
+          // При нажатии на кнопку типа submit, будет срабатывать для формы событие submit -> отправка формы
+          form.addEventListener("submit", function (event) {
+            if (!form.checkValidity()) {
+              // Есиформа не валидна. То есть есть такие поля, укоторых значение field.validity.valid = false
+              event.preventDefault(); // Приостанавливаем базовое поведение событие. В данном случае отправку формы
+              event.stopPropagation(); // Приостанавливает прослушивание на "всплытие";
+            }
+            form.classList.add("was-validated"); // Добавляем bootstrap класс, что форма проверилась
+          });
+        })();
+        // Получаем элементы, которые нужно проверить
+        const password = document.getElementById("password");
+        const city = document.getElementById("city");
+        // Проверка пароля на допустимые символы и длинну при вводе значений в поле
+        password.addEventListener("change", () => {
+          const checkPassword = new RegExp("^[a-zA-Z0-9_.-]*$");
+          if (
+            !checkPassword.exec(password.value) ||
+            password.value.length <= 5
+          ) {
+            password.classList.remove("is-valid");
+            password.classList.add("is-invalid");
+            password.setCustomValidity("Пароль некоректный");
+          } else {
+            password.classList.remove("is-invalid");
+            password.classList.add("is-valid");
+            password.setCustomValidity("");
+          }
+        });
+        // Проверяем, что город состоит не менее чем из 3 букв и при этом содержит только символы кирилицы
+        city.addEventListener("change", () => {
+          const checkCity = new RegExp("^[а-яА-Я]*$"); // Новое регулярное выражение, в котором мы будем проверять только русский алфавит больших и маленьких букв ^[а-яА-Я]*$
+          if (city.value.length < 3 || !checkCity.exec(city.value)) {
+            city.classList.remove("is-valid");
+            city.classList.add("is-invalid");
+            city.setCustomValidity("Город введен не верно");
+          } else {
+            city.classList.remove("is-invalid");
+            city.classList.add("is-valid");
+            city.setCustomValidity("");
+          }
+        });
+      </script>
+    </div>
+  </body>
+</html>
