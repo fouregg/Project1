@@ -2,6 +2,8 @@ import React from "react";
 import { useState, useEffect } from "react";
 import Card from "react-bootstrap/Card";
 import { Form, Row, Col, Navbar, Container, Nav } from "react-bootstrap";
+import Modal from "react-bootstrap/Modal";
+import Button from "react-bootstrap/Button";
 import "./App.css"; // Импортируйте свои стили
 
 const apiKey = "qY4GHy6WYQEXFRfJuPLBnmc2p5cvoQwYpYNO160g";
@@ -18,6 +20,9 @@ function DogBreedSelect() {
   const [breedDescription, setBreedDescription] = useState("");
   // NEW! вводим массив, который будет хранить выбранное имя кошки и состояние
   const [selectedName, setSelectedName] = useState(null); // Состояние для хранения выбранного имени
+  const [siteDescription, setSiteDescription] = useState(""); // ...............
+  const [showModal, setShowModal] = useState(false); // это состояние для видимости модального окна
+
   //  ОПРЕДЕЛЯЕМ ФУНКЦИЮ ПОЛУЧЕНИЯ ДАННЫХ (useEffect):ДЛЯ ЗАГРУЗКИ ИЗОБРАЖЕНИЙ ИЗ API
   useEffect(() => {
     const fetchData = async () => {
@@ -93,17 +98,13 @@ function DogBreedSelect() {
     setSelectedName({ name: selectedName, index: selectedIndex });
     console.log("selectedName=", selectedName, "selectedIndex=", selectedIndex);
   };
-  // NEW!!
-  // const handleCardClick = (index) => {
-  //   setSelectedName({ name: names[index].name.first, index });
-  // };
-  // const handleCardClick = (index) => {
-  //   const breedObj = breeds.find(
-  //     (breed) => breed.id === breedsImages[index].breeds[0].id
-  //   );
-  //   setSelectedName({ name: names[index].name.first, index });
-  //   setBreedDescription(breedObj.description);
-  // };
+  //!!! Ниже -  обработчик handleHomeClick для отображения модального окна CATS:
+  const handleHomeClick = () => {
+    setSiteDescription(
+      "Добро пожаловать на наш сайт о кошках! Здесь вы можете узнать о различных породах кошек, их особенностях и посмотреть фотографии. Просто выберите породу и затем фото. Надеюсь, вы получите удовольствие от пользования сайтом. С наилучшими пожеланиями, разработчик сайта - Заверяев Денис "
+    );
+    setShowModal(true);
+  };
 
   console.log("names=", names);
   return (
@@ -115,7 +116,9 @@ function DogBreedSelect() {
         data-bs-theme="dark"
       >
         <Container>
-          <Navbar.Brand href="#home">CATS</Navbar.Brand>
+          <Navbar.Brand href="#home" onClick={handleHomeClick}>
+            CATS
+          </Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link href="#home">Home</Nav.Link>
             <Nav.Link href="#features">Features</Nav.Link>
@@ -123,6 +126,19 @@ function DogBreedSelect() {
           </Nav>
         </Container>
       </Navbar>
+
+      <Modal show={showModal} onHide={() => setShowModal(false)}>
+        <Modal.Header closeButton>
+          <Modal.Title>Описание сайта</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>{siteDescription}</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Убрать
+          </Button>
+        </Modal.Footer>
+      </Modal>
+
       <div className="row">
         <div className="col-md-6">
           <Form>
@@ -199,7 +215,7 @@ function DogBreedSelect() {
         ) : (
           breedsImages.length > 0 && // Если выбрана порода
           breedsImages.map((breed, index) => (
-            <Col xs={4} key={breed.id}>
+            <Col xs={12} sm={6} lg={4} key={breed.id}>
               <Card
                 style={{ width: "18rem", height: "100%" }}
                 // onClick={() => handleCardClick(index)}
