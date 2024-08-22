@@ -7,6 +7,7 @@ import Button from "react-bootstrap/Button";
 import "./App.css"; // Импортируйте свои стили
 
 const apiKey = "qY4GHy6WYQEXFRfJuPLBnmc2p5cvoQwYpYNO160g";
+
 // ОПРЕДЕЛЯЯЕМ КОМПОНЕНТ, который отвечает за выбор породы и вывод панели и картинок
 // и прописываем его СОСТОЯНИЯ useState
 function DogBreedSelect() {
@@ -183,7 +184,7 @@ function DogBreedSelect() {
               >
                 <option>Choose cat's name (it's fantacy name)</option>
                 {names.map((name) => (
-                  <option key={name.id} value={name.name.first}>
+                  <option key={name.name.first} value={name.name.first}>
                     {name.name.first}
                   </option>
                 ))}
@@ -199,7 +200,7 @@ function DogBreedSelect() {
          *  Если  условие  ложно  (хотя  бы  один  массив  пустой),  то  отображается  код  внутри  вторых  скобок  ( ... ).Добавляем метку */}
         {selectedName ? ( // Если выбрано конкретное имя
           <Col xs={12}>
-            <Card style={{ width: "100%", height: "100%" }}>
+            <Card className="w-100 h-100">
               <Card.Img
                 variant="top"
                 src={breedsImages[selectedName.index].url}
@@ -216,8 +217,7 @@ function DogBreedSelect() {
           breedsImages.length > 0 && // Если выбрана порода
           breedsImages.map((breed, index) => (
             <Col xs={12} sm={6} lg={4} key={breed.id}>
-              <Card
-                style={{ width: "18rem", height: "100%" }}
+              <Card className="w-100 h-100"
                 // onClick={() => handleCardClick(index)}
               >
                 <Card.Img variant="top" src={breed.url} />

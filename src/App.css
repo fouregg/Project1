@@ -36,6 +36,7 @@
     transform: rotate(360deg);
   }
 }
+
 .text-center {
   text-align: center;
   display: flex;
@@ -43,12 +44,14 @@
   font-weight: bold;
   margin-top: 5px;
 }
+
 .navbar .navbar-brand {
   color: #fff;
   font-size: 24px;
   font-weight: bold;
   padding: 0;
 }
+
 /* Стили для карточек */
 .card {
   border: none;
@@ -59,12 +62,15 @@
 .card:hover {
   transform: translateY(-5px);
 }
-body {
-  background: linear-gradient(to right, #add8e6, #e6e6fa);
-}
+
 .large-title {
   font-size: 30px;
 }
+
 .large-text {
   font-size: 24px;
+}
+
+body {
+  background: linear-gradient(to right, #add8e6, #e6e6fa);
 }
